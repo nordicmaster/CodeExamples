@@ -1,0 +1,11 @@
+// Store an object instead of a string
+localStorage.setItem('key', {name: 'value'});
+alert(typeof localStorage.getItem('key')); // string
+
+// Store an integer instead of a string
+localStorage.setItem('key', 1);
+alert(typeof localStorage.getItem('key')); // string
+
+// Store an object using JSON
+localStorage.setItem('key', JSON.stringify({name: 'value'}));
+alert(JSON.parse(localStorage.getItem('key')).name); // value
