@@ -30,38 +30,64 @@ namespace GTHB_TEST
         [Test(Description = "Check Nordicmaster github io")]
         public void gtp_storage()
         {
-            homeURL = "https://nordicmaster.github.io";
-            driver.Navigate().GoToUrl(homeURL);
-            WebDriverWait wait = new WebDriverWait(driver, System.TimeSpan.FromSeconds(10));
-            wait.Until(driver => driver.FindElement(By.Id("bodycenter")));
-            IWebElement element = driver.FindElement(By.Id("bodycenter"));
-            driver.Navigate().GoToUrl("https://nordicmaster.github.io/about.html");
-            WebDriverWait wait2 = new WebDriverWait(driver, System.TimeSpan.FromSeconds(10));
-            wait2.Until(driver => driver.FindElement(By.Id("bodycenter")));
-            driver.Navigate().Back();
-            element = driver.FindElement(By.Id("bodycenter"));
-            Assert.AreNotEqual(element, null);
-            Assert.AreNotEqual(element.Size.Width, null);
-            Assert.Greater(1080, element.Size.Width);
-            var lst = driver.FindElements(By.ClassName("justrow"));
-            var logs = driver.Manage().Logs.GetLog(LogType.Browser);
-            foreach (var entry in logs)
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Users\dryabuhin\GTHB.txt"))
             {
-                Console.WriteLine(entry.ToString());
-            }
-            foreach (var item in lst)
-            {
-                Assert.AreNotEqual(item, null);
-                var childs = item.FindElements(By.ClassName("itempart2"));
-                foreach (var dd in childs)
-                { 
-                    Assert.AreNotEqual(dd, null);
-                    dd.FindElement(By.XPath("descendant::button")).Click();
-                    Assert.AreNotEqual(dd.Text, null);
-                    Console.WriteLine(dd.Text);
+                homeURL = "https://nordicmaster.github.io";
+                driver.Navigate().GoToUrl(homeURL);
+                IWebElement element = driver.FindElement(By.ClassName("bodycenter"));
+                driver.Navigate().GoToUrl(homeURL+"/about.html");
+                WebDriverWait wait2 = new WebDriverWait(driver, System.TimeSpan.FromSeconds(10));
+                wait2.Until(driver => driver.FindElement(By.ClassName("bodycenter")));
+                driver.Navigate().Back();
+                driver.Navigate().Refresh();
+                element = driver.FindElement(By.ClassName("bodycenter"));
+                Assert.AreNotEqual(element, null);
+                Assert.AreNotEqual(element.Size.Width, null);
+                Assert.Greater(1080, element.Size.Width);
+                var lst = driver.FindElements(By.ClassName("justrow"));
+                /*var logs = driver.Manage().Logs.GetLog(LogType.Browser);
+                foreach (var entry in logs)
+                {
+                    Console.WriteLine(entry.ToString());
+                }*/
+                double sumall = 0;
+                foreach (var item in lst)
+                {
+                    Assert.AreNotEqual(item, null);
+                    var childs = item.FindElements(By.ClassName("itempart2"));
+                    foreach (var dd in childs)
+                    {                    
+                        Assert.AreNotEqual(dd, null);
+                        dd.FindElement(By.XPath("descendant::summary")).Click();
+                        Assert.AreNotEqual(dd.Text, null);
+                        file.WriteLine(dd.Text);
+                    
+                    }
+                    childs = item.FindElements(By.ClassName("itempart3"));
+                    foreach (var dd in childs)
+                    {
+                        Assert.AreNotEqual(dd, null);
+                        var len = dd.FindElement(By.ClassName("ng-scope"));
+                        double numlen = 0;
+                        try
+                        {
+                            numlen = Convert.ToDouble(len.Text.Remove(len.Text.IndexOf(' ')),System.Globalization.CultureInfo.InvariantCulture);
+                            sumall += numlen;
+                        }
+                        catch (Exception e)
+                        {
+                            file.WriteLine("EXCEPTION  "+len.Text);
+                            file.WriteLine(len.Text.Remove(len.Text.IndexOf(' ')));
+                            continue;
+                        }
+                        Assert.AreNotEqual(numlen, null);
+                        Assert.Greater(numlen, 0.0);
+                        file.WriteLine(numlen);
+                    }
                 }
+                file.WriteLine("total: "+Convert.ToInt32(sumall)/60+" : " + Convert.ToInt32(sumall) % 60);
             }
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
 
