@@ -1,0 +1,8 @@
+<system.webServer>
+    <httpProtocol>
+        <customHeaders>
+            <add name="Access-Control-Allow-Origin" value="*" />
+        </customHeaders>
+    </httpProtocol>
+</system.webServer>
+//для работы ебучего корс на иис
