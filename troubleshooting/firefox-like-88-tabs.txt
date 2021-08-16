@@ -4,3 +4,6 @@ browser.proton.doorhangers.enabled = false
 browser.proton.enabled = false
 browser.proton.modals.enabled = false
 browser.proton.toolbar.version = 0
+
+
+it is no longer works((
