@@ -1,0 +1,6 @@
+about:config
+browser.proton.contextmenus.enabled = false
+browser.proton.doorhangers.enabled = false
+browser.proton.enabled = false
+browser.proton.modals.enabled = false
+browser.proton.toolbar.version = 0
