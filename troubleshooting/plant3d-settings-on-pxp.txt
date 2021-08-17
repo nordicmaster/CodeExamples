@@ -1,0 +1,4 @@
+файл - параметры 
+путь доступа к вспомогательным файлам - добавить c:\autocad user support и c:\autocad user support/fonts
+путь поиска рабочих вспомогательных файлов - добавить c:\autocad user support и c:\autocad user support/fonts
+доверенные местоположения - добавить c:\autocad user support\...
