@@ -1,0 +1,2 @@
+use , not ; in formulas
+https://github.com/EPPlusSoftware/EPPlus/wiki/Formula-Calculation#trouble-shootinglogging
