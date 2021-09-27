@@ -120,22 +120,6 @@ namespace ConsoleApp_GoogleDriveTest
             Console.WriteLine("time all = " + elapsedMs / 1000 + " sec " + elapsedMs % 1000 + "msec");
             Console.WriteLine("time avg per 1 folder = " + times.Average() / 1000 + " sec");
             Console.ReadKey();
-
-            /*FilesResource.ListRequest listRequest2 = service.Files.List();
-            listRequest2.Q = "name contains 'Folder' and trashed = false";
-            listRequest2.PageSize = 1000;
-            listRequest2.Fields = "nextPageToken, files(id, name)";
-
-            IList<Google.Apis.Drive.v3.Data.File> files2 = listRequest2.Execute()
-                .Files;
-            if (files2 != null)
-            {
-                Console.WriteLine("Files: " + files2.Count);
-                foreach (var file in files2)
-                {
-                    deleteFile(service,file.Id);
-                }
-            }*/
         }
         public static File createDirectory(DriveService _service, string _title, string _description, string _parent)
         {
