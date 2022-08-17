@@ -1,0 +1,2 @@
+in some spec there is no column in engineeringItems table
+need to find detail which has such spec
