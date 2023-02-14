@@ -1,2 +1,5 @@
 use , not ; in formulas
 https://github.com/EPPlusSoftware/EPPlus/wiki/Formula-Calculation#trouble-shootinglogging
+
+use . not , in formulas like A1/1.5
+BUT in Excel it shows "=A1/1,5" (WTF?)
