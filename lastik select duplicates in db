@@ -1,0 +1,4 @@
+SELECT lower(artist), count(*)
+FROM firstapp_statsartist
+Group by lower(artist)
+having count(*) > 1;
